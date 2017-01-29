@@ -10,12 +10,12 @@ mongoose.connect('mongodb://localhost/geo-post-app', function(err) {
    }
 });
 
-new mongoose.Schema = ({
-   name: String,
-   completed: Boolean
-});
+//new mongoose.Schema = ({
+//   name: String,
+//   completed: Boolean
+//});
 
-var model = mongoose.model('User', userSchema);
+//var model = mongoose.model('User', userSchema);
 
 
-module.export = model;
+//module.export = model;

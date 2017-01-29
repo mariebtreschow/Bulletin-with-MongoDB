@@ -9,7 +9,6 @@ const express = require('express'),
 
 var app = express();
 var url = 'mongodb://localhost:27017/mongo-app';
-
 require('./database');
 
 app.use(express.static('public'));
@@ -20,8 +19,12 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.set('view engine', 'pug');
 
 app.get('/messages', (req, res) => {
+   var messageArray = [];
    mongo.connect(url, (err, db) => {
-      db.collection('post').find().then((post) => {
+      var posts = db.collection('post').find();
+      post.forEach(function(doc, err){
+         messageArray.push(doc);
+      }, function() {
          res.render('messages', { post: post });
       }).catch((error) => {
          console.log(error);
@@ -40,6 +43,7 @@ app.post('/post-message', (req, res) => {
    };
    mongo.connect(url, (err, db) => {
       db.collection('post').insertOne(post, function(err, result) {
+         assert.equal(null, error);
          console.log('post inserted!');
       }).catch((error) => {
          console.log(error);
