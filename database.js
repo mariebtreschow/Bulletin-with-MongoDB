@@ -9,3 +9,13 @@ mongoose.connect('mongodb://localhost/geo-post-app', function(err) {
       console.log('Successfully connected to Mongo!');
    }
 });
+
+new mongoose.Schema = ({
+   name: String,
+   completed: Boolean
+});
+
+var model = mongoose.model('User', userSchema);
+
+
+module.export = model;

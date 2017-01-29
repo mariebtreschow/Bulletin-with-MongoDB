@@ -17,5 +17,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mariebtreschow/Bulletin-with-MongoDB.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mariebtreschow/Bulletin-with-MongoDB/issues"
+  },
+  "homepage": "https://github.com/mariebtreschow/Bulletin-with-MongoDB#readme",
   "description": ""
 }
