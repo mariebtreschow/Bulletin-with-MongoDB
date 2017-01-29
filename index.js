@@ -7,6 +7,12 @@ const express = require('express'),
       methodOverride = require('method-override'),
       assert = require('assert');
 
+var MongoClient = require('mongodb').MongoClient;
+MongoClient.connect("mongodb://localhost:27017/mongo-app", function(err, db) {
+   if(!err) {
+      console.log("Successfully connected to Mongo!");
+   }
+});
 
 var app = express();
 var url = 'mongodb://localhost:27017/mongo-app';
