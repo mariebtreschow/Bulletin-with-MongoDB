@@ -4,36 +4,40 @@ const express = require('express'),
       displayRoutes = require('express-routemap')
       morgan = require('morgan'),
       mongo = require('mongodb'),
+      methodOverride = require('method-override'),
       assert = require('assert');
 
 
 var app = express();
 var url = 'mongodb://localhost:27017/mongo-app';
 require('./database');
+require('./seed');
 
 app.use(express.static('public'));
 app.use(morgan('dev'));
-app.use(bodyParser.urlencoded({ extended: false}));
-
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.set('view engine', 'pug');
 
 app.get('/messages', (req, res) => {
    var messageArray = [];
    mongo.connect(url, (err, db) => {
-      var posts = db.collection('post').find();
-      post.forEach(function(doc, err){
-         messageArray.push(doc);
+   var posts = db.collection('post').find();
+   post.forEach(function(doc, err){
+      messageArray.push(doc);
+      db.close();
       }, function() {
-         res.render('messages', { post: post });
+         res.render('messages', { title: title });
       }).catch((error) => {
          console.log(error);
       });
    });
 });
 
+
 app.get('/post-message', (req, res) => {
-   res.render('post');
+   res.render('post-message');
 });
 
 app.post('/post-message', (req, res) => {
@@ -55,6 +59,6 @@ app.post('/post-message', (req, res) => {
 
 
 app.listen( 3000, (req, res) => {
-   console.log('App listening on 3000!');
+   console.log('App listening on port 3000!');
    displayRoutes(app);
 });

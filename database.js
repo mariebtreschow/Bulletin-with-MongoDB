@@ -2,20 +2,11 @@
 
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/geo-post-app', function(err) {
+mongoose.connect('mongodb://localhost/mongo-app', function(err) {
    if (err) {
       console.log('Failed to connect to Mongo');
+      console.log(err);
    } else {
       console.log('Successfully connected to Mongo!');
    }
 });
-
-//new mongoose.Schema = ({
-//   name: String,
-//   completed: Boolean
-//});
-
-//var model = mongoose.model('User', userSchema);
-
-
-//module.export = model;
