@@ -20,12 +20,8 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.set('view engine', 'pug');
 
 app.get('/messages', (req, res) => {
-   var messageArray = [];
    mongo.connect(url, (err, db) => {
-      var posts = db.collection('post').find();
-      post.forEach(function(doc, err){
-         messageArray.push(doc);
-      }, function() {
+      db.collection('post').find().then((post) => {
          res.render('messages', { post: post });
       }).catch((error) => {
          console.log(error);
@@ -44,7 +40,6 @@ app.post('/post-message', (req, res) => {
    };
    mongo.connect(url, (err, db) => {
       db.collection('post').insertOne(post, function(err, result) {
-         assert.equal(null, error);
          console.log('post inserted!');
       }).catch((error) => {
          console.log(error);
