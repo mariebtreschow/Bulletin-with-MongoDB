@@ -11,12 +11,12 @@ var MongoClient = require('mongodb').MongoClient;
 MongoClient.connect("mongodb://localhost:27017/mongo-app", function(err, db) {
    if(!err) {
       console.log("Successfully connected to Mongo!");
+   } else {
+      console.log("Failed to connect to Mongo")
    }
 });
 
 var app = express();
-var url = 'mongodb://localhost:27017/mongo-app';
-require('./database');
 require('./seed');
 
 app.use(express.static('public'));
@@ -27,40 +27,15 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'pug');
 
 app.get('/messages', (req, res) => {
-//   var messageArray = [];
-//   mongo.connect(url, (err, db) => {
-//   var posts = db.collection('post').find();
-//   post.forEach(function(doc, err){
-//      messageArray.push(doc);
-//      db.close();
-//      }, function() {
-//         res.render('messages', { title: title });
-//      }).catch((error) => {
-//         console.log(error);
-//      });
-//   });
+ res.render('messages');
 });
 
 
 app.get('/new', (req, res) => {
-   res.render('post-message');
+   res.render('new');
 });
 
 app.post('/new', (req, res) => {
-//   var post = {
-//      title: req.body.title,
-//      content: req.body.content
-//   };
-//   mongo.connect(url, (err, db) => {
-//      db.collection('post').insertOne(post, function(err, result) {
-//         assert.equal(null, error);
-//         console.log('post inserted!');
-//      }).catch((error) => {
-//         console.log(error);
-//      });
-//
-//   });
-//   res.redirect('messages');
 });
 
 
