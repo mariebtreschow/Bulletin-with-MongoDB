@@ -27,40 +27,40 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'pug');
 
 app.get('/messages', (req, res) => {
-   var messageArray = [];
-   mongo.connect(url, (err, db) => {
-   var posts = db.collection('post').find();
-   post.forEach(function(doc, err){
-      messageArray.push(doc);
-      db.close();
-      }, function() {
-         res.render('messages', { title: title });
-      }).catch((error) => {
-         console.log(error);
-      });
-   });
+//   var messageArray = [];
+//   mongo.connect(url, (err, db) => {
+//   var posts = db.collection('post').find();
+//   post.forEach(function(doc, err){
+//      messageArray.push(doc);
+//      db.close();
+//      }, function() {
+//         res.render('messages', { title: title });
+//      }).catch((error) => {
+//         console.log(error);
+//      });
+//   });
 });
 
 
-app.get('/post-message', (req, res) => {
+app.get('/new', (req, res) => {
    res.render('post-message');
 });
 
-app.post('/post-message', (req, res) => {
-   var post = {
-      title: req.body.title,
-      content: req.body.content
-   };
-   mongo.connect(url, (err, db) => {
-      db.collection('post').insertOne(post, function(err, result) {
-         assert.equal(null, error);
-         console.log('post inserted!');
-      }).catch((error) => {
-         console.log(error);
-      });
-
-   });
-   res.redirect('messages');
+app.post('/new', (req, res) => {
+//   var post = {
+//      title: req.body.title,
+//      content: req.body.content
+//   };
+//   mongo.connect(url, (err, db) => {
+//      db.collection('post').insertOne(post, function(err, result) {
+//         assert.equal(null, error);
+//         console.log('post inserted!');
+//      }).catch((error) => {
+//         console.log(error);
+//      });
+//
+//   });
+//   res.redirect('messages');
 });
 
 
