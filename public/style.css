@@ -1,3 +1,19 @@
-h3 {
-   color: white
+body, html {
+   margin: 0px;
+   height: 100%;
+   padding: 0px;
+   font-family: 'Lato', sans-serif !important;
+}
+
+.navbar.navbar-fixed-top.navbar-inverse {
+   font-size: 20px;
+   height: 70px;
+}
+
+.navbar.navbar-fixed-top.navbar-inverse #navbar-brand{
+   font-size: 24px;
+}
+
+.container-fluid {
+   margin-top: 10px;
 }

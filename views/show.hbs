@@ -1,0 +1,15 @@
+<div class="row">
+   <div class="col-md-10">
+      {{#if messages}}
+         {{#each messages as |message|}}
+         <div class="card card-block">
+            <h3>{{message.title}}</a></h3>
+            {{{message.content}}}
+         </div>
+         {{/each}}
+      {{else}}
+         <div class="card card-block">
+            <p>No messages to be found</p>
+         </div>
+      {{/if}}
+   </div>
