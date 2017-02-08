@@ -12,7 +12,7 @@ MongoClient.connect("mongodb://localhost:27017/mongo-app", function(err, db) {
    if(!err) {
       console.log("Successfully connected to Mongo!");
    } else {
-      console.log("Failed to connect to Mongo")
+      console.log("Failed to connect to Mongo");
    }
 });
 
@@ -26,7 +26,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
- res.render('show');
+   //get data from mongodb
+   res.render('show');
 });
 
 app.get('/new', (req, res) => {
@@ -38,6 +39,7 @@ app.post('/new', (req, res) => {
 });
 
 
+//sync with database
 app.listen( 3000, (req, res) => {
    console.log('App listening on port 3000!');
    displayRoutes(app);
