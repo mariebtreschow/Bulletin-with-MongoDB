@@ -20,7 +20,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-   res.render('show');
+   var post = db.collection('post').find().toArray(function(err, results) {
+      console.log(results);
+      res.render('show');
+   });
 });
 
 app.get('/new', (req, res) => {

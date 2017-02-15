@@ -1,10 +1,10 @@
 <div class="row">
    <div class="col-md-10">
-      {{#if messages}}
-         {{#each messages as |message|}}
+      {{#if post}}
+         {{#each post as |post|}}
          <div class="card card-block">
-            <h3>{{message.title}}</a></h3>
-            {{{message.content}}}
+            <h3>{{post.title}}</a></h3>
+            {{{post.content}}}
          </div>
          {{/each}}
       {{else}}
