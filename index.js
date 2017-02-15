@@ -8,14 +8,8 @@ const express = require('express'),
       assert = require('assert');
 
 var MongoClient = require('mongodb').MongoClient;
-MongoClient.connect("mongodb://localhost:27017/mongo-app", function(err, db) {
-   if(!err) {
-      console.log("Successfully connected to Mongo!");
-   } else {
-      console.log("Failed to connect to Mongo");
-   }
-});
 
+//var collection = mongo.DB.collection('post');
 var app = express();
 
 app.use(express.static('public'));
@@ -26,7 +20,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'hbs');
 
 app.get('/', (req, res) => {
-   //get data from mongodb
    res.render('show');
 });
 
@@ -35,12 +28,18 @@ app.get('/new', (req, res) => {
 });
 
 app.post('/new', (req, res) => {
-   //post message to mongoDB
+   db.collection('post').save(req.body, (err, result) => {
+      res.redirect('/');
+   });
 });
 
 
-//sync with database
-app.listen( 3000, (req, res) => {
-   console.log('App listening on port 3000!');
-   displayRoutes(app);
+MongoClient.connect("mongodb://localhost:27017/mongo-app", function(err, database) {
+   if(err) return console.log(err);
+   db = database
+   app.listen( 3000, (req, res) => {
+      console.log('App listening on port 3000!');
+      console.log("Successfully connected to Mongo!");
+      displayRoutes(app);
+   });
 });
